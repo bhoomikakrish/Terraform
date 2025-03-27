@@ -8,7 +8,7 @@ variable "cidr" {
 
 resource "aws_key_pair" "terraform-key" {
   key_name   = "terraform_key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("C:/Users/bhoomika.krishnappa/.ssh/id_rsa.pub")
 }
 
 resource "aws_vpc" "demo" {
@@ -73,6 +73,13 @@ resource "aws_security_group" "demo_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
     description = "Allow all outbound traffic"
+  }
+  egress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Enable 8080 jenkins port"
   }
 }
 
